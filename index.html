@@ -172,11 +172,11 @@
                 opacity: 1;
             }
             40% { 
-                color: #D4AF37;
+                color: #face19;
                 opacity: 0.9;
             }
             70% { 
-                color: #D4AF37;
+                color: #face19;
                 opacity: 1;
             }
             100% { 
@@ -769,21 +769,55 @@
             window.location.href = "http://localhost:8080/contact.html";
             closeModal();
         });
-        function redirectToPage2() {
-            window.location.href = "http://localhost:8080/page2.html/";
+        
+        // ========== UPDATED REDIRECT LOGIC ==========
+        // Blackbox -> wboxpentester.cc.cd/page2.html
+        // Graybox  -> wboxpentester.cc.cd/Gpage2.html
+        // Whitebox -> wboxpentester.cc.cd/Wpage2.html
+        function redirectToPage(optionType) {
+            let targetUrl = '';
+            if (optionType === 'blackbox') {
+                targetUrl = 'https://wboxpentester.cc.cd/page2.html';
+            } else if (optionType === 'graybox') {
+                targetUrl = 'https://wboxpentester.cc.cd/Gpage2.html';
+            } else if (optionType === 'whitebox') {
+                targetUrl = 'https://wboxpentester.cc.cd/Wpage2.html';
+            }
+            if (targetUrl) {
+                window.location.href = targetUrl;
+            } else {
+                // fallback just in case
+                window.location.href = 'https://wboxpentester.cc.cd/page2.html';
+            }
         }
+
+        // Attach click handlers to each select button
         document.querySelectorAll('.select-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                redirectToPage2();
+                e.stopPropagation();  // prevent card's click handler from interfering
+                const optionValue = btn.getAttribute('data-option');
+                redirectToPage(optionValue);
             });
         });
+        
+        // Also allow clicking on the entire option card (but not if the button was clicked)
         document.querySelectorAll('.option-card').forEach(card => {
             card.addEventListener('click', (e) => {
+                // If the click target is the button or inside the button, we already handled it.
                 if (e.target.classList && e.target.classList.contains('select-btn')) return;
-                redirectToPage2();
+                if (e.target.parentElement && e.target.parentElement.classList && e.target.parentElement.classList.contains('select-btn')) return;
+                // Determine which option card was clicked
+                let selectedOption = '';
+                if (card.querySelector('.select-btn')) {
+                    const btnOption = card.querySelector('.select-btn').getAttribute('data-option');
+                    selectedOption = btnOption;
+                }
+                if (selectedOption) {
+                    redirectToPage(selectedOption);
+                }
             });
         });
+
         if (sendMsgBtn) {
             sendMsgBtn.addEventListener('click', () => {
                 const emailAddress = 'trenderwell@gmail.com';
@@ -837,4 +871,4 @@
         window.addEventListener('resize', setViewport);
     </script>
 </body>
-</html>
+                        </html>
