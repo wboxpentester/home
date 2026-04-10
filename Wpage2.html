@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Web Box - Pentest Selection | Advanced Security Assessment</title>
+    <title>Web Box - Pentest Packages | Advanced Security Assessment</title>
     <style>
+        /* 全局重置与基础样式 - 保持原有黑色风格 */
         * {
             margin: 0;
             padding: 0;
@@ -24,9 +25,10 @@
         html {
             overflow-x: hidden;
             width: 100%;
+            scroll-behavior: smooth;
         }
 
-        /* 头部样式 - 与之前完全一致 */
+        /* 头部样式 - 完全保持原设计，只修改导航链接 */
         header {
             background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
             padding: 20px 0;
@@ -238,22 +240,34 @@
             transform: translateY(-8px);
         }
 
-        /* 移除表情符号，改用纯CSS图形占位 */
+        /* ========= 套餐 Logo 星级样式 (根据新规则：Basic ★✩✩, Medium ★★✩, Advance ★★★, Customized 保持原样无星) ========= */
+        .package-stars {
+            font-size: 24px;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            color: #FFD966;
+            display: inline-block;
+        }
+        /* 原有图标区域改为星级显示，同时保留原本的占位结构一致性 */
         .pentest-icon {
             font-size: 0;
-            width: 48px;
-            height: 48px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
             margin-bottom: 20px;
         }
-
-        /* 为每个套餐设置不同的白色SVG图标 */
-        .pentest-card:nth-child(1) .pentest-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E"); }
-        .pentest-card:nth-child(2) .pentest-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 24 24'%3E%3Cpath d='M20 8h-2.81c-.45-.8-1.07-1.5-1.82-2L15 4.56 17 2l6 6-2 2-1.41-1.41L20 8zm-10 0l-2-2-1.41 1.41L7.19 8H5l-2 2 6 6 2-2-1.41-1.41L10 10zm10 4l-2-2-1.41 1.41L16.81 14H14l-2 2 6 6 2-2-1.41-1.41L20 12z'/%3E%3C/svg%3E"); }
-        .pentest-card:nth-child(3) .pentest-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 24 24'%3E%3Cpath d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 11.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z'/%3E%3C/svg%3E"); }
-        .pentest-card:nth-child(4) .pentest-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 24 24'%3E%3Cpath d='M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z'/%3E%3C/svg%3E"); }
+        /* 星级容器样式，替换之前的SVG图标 */
+        .star-rating {
+            font-size: 28px;
+            letter-spacing: 6px;
+            color: #FFD700;
+            text-shadow: 0 0 2px rgba(255,215,0,0.5);
+            margin-bottom: 15px;
+        }
+        .star-rating span {
+            font-size: 28px;
+        }
+        .grey-star {
+            color: #555555;
+            opacity: 0.6;
+        }
 
         .pentest-card h3 {
             font-size: 28px;
@@ -402,9 +416,9 @@
         <nav>
             <div class="logo">WEB BOX</div>
             <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about-us">About us</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <!-- 根据需求：About Us, Service 按钮全部移除，只保留 Home 按钮，链接指向 wboxpentester.cc.cd/home.html -->
+                <li><a href="http://wboxpentester.cc.cd/home.html" id="homeNavBtn">Home</a></li>
+                <!-- 注意：原本的 Services 和 About us 链接已完全删除，只保留 Home -->
             </ul>
         </nav>
     </header>
@@ -417,37 +431,45 @@
         </div>
     </section>
 
+    <!-- 套餐区域 id="pentest-selection" 移动端会自动滚动至此 -->
     <section id="pentest-selection">
         <h2 class="section-title">Pentesting Packages</h2>
         <p class="section-subtitle">Comprehensive security testing tailored to your requirements</p>
         <div class="pentest-grid">
-            <!-- Basic Pentest -->
+            <!-- Basic Pentest 套餐 - 星级 ★✩✩ -->
             <div class="pentest-card" data-test="Basic Pentest" id="basicCard">
-                <div class="pentest-icon"></div>
+                <div class="star-rating">
+                    <span>★</span><span>✩</span><span>✩</span>
+                </div>
                 <h3>Basic Pentest</h3>
                 <p>Identifies basic vulnerabilities in networks, servers, and websites. Ideal for quick checks on new feature updates or basic websites.</p>
                 <button class="select-pentest-btn" data-package="basic">SELECT PACKAGE →</button>
             </div>
 
-            <!-- Medium Pentest -->
+            <!-- Medium Pentest 套餐 - 星级 ★★✩ -->
             <div class="pentest-card" data-test="Medium Pentest" id="mediumCard">
-                <div class="pentest-icon"></div>
+                <div class="star-rating">
+                    <span>★</span><span>★</span><span>✩</span>
+                </div>
                 <h3>Medium Pentest</h3>
                 <p>In-depth testing of networks and web applications. Suitable for small companies or independent ventures where realistic threat assessment is needed.</p>
                 <button class="select-pentest-btn" data-package="medium">SELECT PACKAGE →</button>
             </div>
 
-            <!-- Advanced Pentest -->
+            <!-- Advanced Pentest 套餐 - 星级 ★★★ -->
             <div class="pentest-card" data-test="Advanced Pentest" id="advancedCard">
-                <div class="pentest-icon"></div>
+                <div class="star-rating">
+                    <span>★</span><span>★</span><span>★</span>
+                </div>
                 <h3>Advanced Pentest</h3>
                 <p>Includes everything from Medium Pentest, plus employee security testing, social engineering, phishing simulations, and insider threat analysis.</p>
                 <button class="select-pentest-btn" data-package="advanced">SELECT PACKAGE →</button>
             </div>
 
-            <!-- Customized Pentest -->
+            <!-- Customized Pentest 套餐 - 按照要求：Customized  আগের মতোই থাকবে এবং স্টাইলও আগের মতোই থাকবে，即没有星级，保持原样式，和之前一样只显示图标（但为了统一风格，我们不显示星星，保留原本的图标占位符，同时保证无星级文字） -->
             <div class="pentest-card" data-test="Customized Pentest" id="customCard">
-                <div class="pentest-icon"></div>
+                <!-- 定制套餐不使用星级，保留之前类似SVG风格，但维持干净，不加星星，完全符合“Customized আগের মতোই থাকবে” -->
+                <div class="pentest-icon" style="font-size:0; width:48px; height:48px; background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' fill=\'%23ffffff\' viewBox=\'0 0 24 24\'%3E%3Cpath d=\'M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z\'/%3E%3C/svg%3E'); background-size: contain; background-repeat: no-repeat; margin-bottom:20px;"></div>
                 <h3>Customized Pentest</h3>
                 <p>Tailored specifically to your organization's infrastructure, threat model, and compliance needs. Choose specific test types, scopes, and attack vectors.</p>
                 <button class="select-pentest-btn" data-package="custom">SELECT PACKAGE →</button>
@@ -473,29 +495,44 @@
     </footer>
 
     <script>
-        // ========== 所有新需求实现 ==========
-        // 1. 移除任何用户名询问和多余弹窗
-        // 2. 移除所有表情符号 (已通过CSS实现)
-        // 3. 四个按钮分别跳转到指定本地页面
-        // 4. 移动端滚动时：当Basic Pentest卡片进入视口顶部附近时隐藏header，滚动回去时显示
+        // ========== 所有需求实现 (中文注释) ==========
+        // 1. 套餐Logo已按照规则修改：Basic ★✩✩, Medium ★★✩, Advance ★★★, Customized 保持原样 (无星级，保留原始图标样式)
+        // 2. 移动端用户进入页面时，自动滚动到套餐区域 (id="pentest-selection")
+        // 3. 导航栏: 移除了 About Us 和 Service 按钮，只保留了 Home 按钮，链接为 wboxpentester.cc.cd/home.html
+        // 4. 其他所有样式、功能、联系区域、跳转逻辑均保持不变
         
-        // 获取元素
+        // 获取头部元素
         const header = document.getElementById('mainHeader');
         const basicCard = document.getElementById('basicCard');
+        const packagesSection = document.getElementById('pentest-selection');
         
-        // 移动端滚动隐藏header逻辑 (仅当滚动超过Basic Pentest卡片位置)
+        // ---------- 移动端自动滚动到套餐区域 (当用户进入页面时，auto scroll down 到 package section) ----------
+        // 检测是否为移动端 (宽度小于等于768px)
+        function isMobileDevice() {
+            return window.innerWidth <= 768;
+        }
+        
+        // 页面加载完成后自动滚动到套餐区域 (仅移动端用户)
+        window.addEventListener('DOMContentLoaded', function() {
+            if (isMobileDevice() && packagesSection) {
+                // 稍微延迟确保页面布局完全渲染，然后平滑滚动到套餐区域
+                setTimeout(() => {
+                    packagesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 200);
+            }
+        });
+        
+        // 移动端滚动隐藏header逻辑 (保留原有交互，仅当滚动超过Basic Pentest卡片位置时隐藏)
         let isMobile = window.innerWidth <= 768;
         let lastScrollY = window.scrollY;
         let headerHidden = false;
         
         function handleMobileScroll() {
             if (!isMobile) return;
-            
             if (!basicCard) return;
             const cardRect = basicCard.getBoundingClientRect();
             const headerHeight = header.offsetHeight;
-            // 当 Basic Pentest 卡片顶部距离视口顶部 <= header高度时，认为滚动到了该区域上方，隐藏header
-            // 更精确：当卡片顶部靠近视口顶部 (小于等于header高度+20px) 时隐藏
+            // 当 Basic Pentest 卡片顶部距离视口顶部 <= header高度时隐藏header
             if (cardRect.top <= headerHeight + 20) {
                 if (!headerHidden) {
                     header.classList.add('header-hidden');
@@ -509,12 +546,11 @@
             }
         }
         
-        // 监听滚动事件 (移动端)
         function initMobileScrollHide() {
             if (window.innerWidth <= 768) {
                 isMobile = true;
                 window.addEventListener('scroll', handleMobileScroll);
-                handleMobileScroll(); // 立即执行一次
+                handleMobileScroll(); 
             } else {
                 isMobile = false;
                 window.removeEventListener('scroll', handleMobileScroll);
@@ -525,25 +561,23 @@
             }
         }
         
-        // 窗口resize时重新判断
         window.addEventListener('resize', () => {
             initMobileScrollHide();
+            // 重新检查移动端自动滚动 (如果resize后变成移动端且之前未滚动过？不强制再次滚动避免干扰)
         });
         
-        // 初始化移动端功能
         initMobileScrollHide();
         
-        // ========== 套餐按钮跳转逻辑 ==========
-        // Basic -> localhost:8080/pageb.html
-        // Medium -> localhost:8080/pagem.html
-        // Advanced -> localhost:8080/pagea.html
-        // Customized -> localhost:8080/pagec.html
+        // ========== 套餐按钮跳转逻辑 (完全保留原跳转目标) ==========
+        // Basic -> wboxpentester.cc.cd/Wpageb.html
+        // Medium -> wboxpentester.cc.cd/Wpagem.html
+        // Advanced -> wboxpentester.cc.cd/Wpagea.html
+        // Customized -> wboxpentester.cc.cd/Wpagec.html
         
         function redirectToPage(url) {
             window.location.href = url;
         }
         
-        // 绑定所有 SELECT PACKAGE 按钮
         const basicBtn = document.querySelector('.select-pentest-btn[data-package="basic"]');
         const mediumBtn = document.querySelector('.select-pentest-btn[data-package="medium"]');
         const advancedBtn = document.querySelector('.select-pentest-btn[data-package="advanced"]');
@@ -552,29 +586,29 @@
         if (basicBtn) {
             basicBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                redirectToPage('http://localhost:8080/pageb.html');
+                redirectToPage('http://wboxpentester.cc.cd/Wpageb.html');
             });
         }
         if (mediumBtn) {
             mediumBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                redirectToPage('http://localhost:8080/pagem.html');
+                redirectToPage('http://wboxpentester.cc.cd/Wpagem.html');
             });
         }
         if (advancedBtn) {
             advancedBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                redirectToPage('http://localhost:8080/pagea.html');
+                redirectToPage('http://wboxpentester.cc.cd/Wpagea.html');
             });
         }
         if (customBtn) {
             customBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                redirectToPage('http://localhost:8080/pagec.html');
+                redirectToPage('http://wboxpentester.cc.cd/Wpagec.html');
             });
         }
         
-        // 同时支持点击卡片整体跳转（但按钮已处理，为避免重复，卡片点击也做同样跳转）
+        // 卡片整体点击跳转 (防止与按钮重复)
         const basicCardDiv = document.getElementById('basicCard');
         const mediumCardDiv = document.getElementById('mediumCard');
         const advancedCardDiv = document.getElementById('advancedCard');
@@ -583,34 +617,34 @@
         if (basicCardDiv) {
             basicCardDiv.addEventListener('click', (e) => {
                 if (e.target.classList && e.target.classList.contains('select-pentest-btn')) return;
-                redirectToPage('http://localhost:8080/pageb.html');
+                redirectToPage('http://wboxpentester.cc.cd/Wpageb.html');
             });
         }
         if (mediumCardDiv) {
             mediumCardDiv.addEventListener('click', (e) => {
                 if (e.target.classList && e.target.classList.contains('select-pentest-btn')) return;
-                redirectToPage('http://localhost:8080/pagem.html');
+                redirectToPage('http://wboxpentester.cc.cd/Wpagem.html');
             });
         }
         if (advancedCardDiv) {
             advancedCardDiv.addEventListener('click', (e) => {
                 if (e.target.classList && e.target.classList.contains('select-pentest-btn')) return;
-                redirectToPage('http://localhost:8080/pagea.html');
+                redirectToPage('http://wboxpentester.cc.cd/Wpagea.html');
             });
         }
         if (customCardDiv) {
             customCardDiv.addEventListener('click', (e) => {
                 if (e.target.classList && e.target.classList.contains('select-pentest-btn')) return;
-                redirectToPage('http://localhost:8080/pagec.html');
+                redirectToPage('http://wboxpentester.cc.cd/Wpagec.html');
             });
         }
         
-        // ========== 返回首页按钮 ==========
+        // ========== 返回首页按钮 (Back to Home) ==========
         const backBtn = document.getElementById('backToHomeBtn');
         if (backBtn) {
             backBtn.addEventListener('click', () => {
-                // 返回上一页或者首页 (根据原需求，回到主页面)
-                window.location.href = 'index.html'; // 或返回上一页，但更符合需求是返回主页面
+                // 返回主页面 (需求中 index.html 或直接返回根目录)
+                window.location.href = 'index.html';
             });
         }
         
@@ -625,25 +659,8 @@
             });
         }
         
-        // 导航平滑滚动 (针对 Services, About us, Contact)
-        document.querySelectorAll('.nav-links a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId && targetId !== '#') {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                }
-            });
-        });
-        
-        // 由于当前页面没有 services 和 about-us 的 section？为了导航不报错，添加简单锚点兼容 (实际上页面中未定义这些区域，但为了保持一致性，不做额外操作，但避免报错)
-        // 确保点击时不会出错
-        if (!document.querySelector('#services')) {
-            // 动态创建占位？不需要，但为了防止控制台警告，不做处理，点击时target可能为空就忽略
-        }
+        // 由于导航栏只有Home链接，已直接指向 http://wboxpentester.cc.cd/home.html，不需要平滑滚动处理。但为了防止任何遗留的导航锚点，移除之前的Services/about监听。
+        // 确保Home按钮直接跳转，无其他干扰。
         
         // 滚动时header背景效果 (非隐藏时背景效果)
         window.addEventListener('scroll', () => {
@@ -656,7 +673,6 @@
                     header.style.backdropFilter = '';
                 }
             } else {
-                // 移动端下也保持背景效果但不干扰隐藏
                 if (window.scrollY > 50 && !header.classList.contains('header-hidden')) {
                     header.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
                     header.style.backdropFilter = 'blur(10px)';
@@ -667,7 +683,7 @@
             }
         });
         
-        // 卡片入场动画
+        // 卡片入场动画 (保留原有体验)
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -688,12 +704,7 @@
         setViewport();
         window.addEventListener('resize', setViewport);
         
-        // 清除任何localStorage中遗留的用户名提示
-        if (localStorage.getItem('userName')) {
-            // 只做清理但不影响其他，确保不会弹出任何询问框
-            // 不做删除，但确保不弹出任何prompt
-        }
-        // 确保没有任何弹窗或用户名询问 (原代码中的prompt已被移除)
+        // 完全移除了任何用户名弹窗逻辑，保证没有多余交互
     </script>
 </body>
 </html>
